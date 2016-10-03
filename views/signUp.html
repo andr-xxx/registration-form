@@ -1,0 +1,44 @@
+<div id="content">
+  <div class="container-fluid">
+    <div class="row-fluid">
+      <div class="col-sm-3"></div>
+      <div class="col-sm-6 login-form">
+        <form name='signUpForm' class="css-form" novalidate>
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" id="name" name="name" placeholder="Name" ng-model="user.name"
+                   minlength="2" required>
+            <!-- знаю, что есть ngMessages, но вариант ngShow, как по мне эллегантнее, и не требует подключений дополнительных зависимостей
+            что облегчает вес приложения.-->
+            <p ng-show="signUpForm.name.$invalid && !signUpForm.name.$pristine" class="text-invalid">Short name</p>
+          </div>
+          <div class="form-group">
+            <label for="surname">Surname</label>
+            <input type="text" class="form-control" id="surname" name='surname' placeholder="Surname"
+                   ng-model="user.surname" minlength="2" required>
+            <p ng-show="signUpForm.surname.$invalid && !signUpForm.surname.$pristine" class="text-invalid">Short surname</p>
+          </div>
+          <div class="form-group">
+            <label for="email">Email address</label>
+            <input type="email" class="form-control" id="email" name='email' placeholder="Email" ng-model="user.email" required>
+            <p ng-show="signUpForm.email.$invalid && !signUpForm.email.$pristine" class="text-invalid">Invalid email</p>
+            <p ng-show="err" class="text-invalid">This e-mail already exists</p>
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" id="password" name='password' placeholder="Password"
+                   ng-model="user.password" minlength="4" required>
+            <p ng-show="signUpForm.password.$invalid && !signUpForm.password.$pristine" class="text-invalid">Short password</p>
+          </div>
+          <div class="form-group">
+            <label for="confimPassword">Confim Password</label>
+            <input type="password" class="form-control" id="confimPassword" name='confimPassword'
+                   placeholder="Confim Password" ng-model="test.confimPassword" minlength="4" check-pass>
+            <p ng-show="signUpForm.confimPassword.$error.checkPass" class="text-invalid"> Passwords do not match</p>
+          </div>
+          <button type="submit" class="btn btn-success" ng-click="signUp()" ng-disabled="signUpForm.$invalid">sign up</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

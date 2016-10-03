@@ -1,0 +1,67 @@
+html {
+    min-height: 100%;
+    position: relative;
+}
+body {
+    min-height: 100%;
+}
+.top-line {
+    height: 80px;
+    background-color: rgb(94, 114, 133);
+}
+
+header img {
+    width: 70px;
+    height: 70px;
+    margin-top: 10px;
+}
+.top-mnu {
+    margin-top: 10px;;
+}
+
+.top-mnu li a {
+    font-size: 25px;
+
+}
+
+.login-form {
+    padding-top: 20px;
+}
+#content {
+    margin-bottom:90px;
+}
+.container-fluid {
+    max-width: 980px;
+    padding:0 10px;
+}
+
+
+
+footer {
+    height: 80px;
+    background-color: rgb(94, 114, 133);
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+}
+footer a {
+    text-decoration: none;
+    color: #fff;
+    font-size:18px;
+}
+
+.css-form input.ng-invalid.ng-touched {
+    background-color: lightpink;
+}
+.css-form p.text-invalid {
+    color: red;
+    padding-left:10px;
+    padding-top:5px;
+}
+.hello h2 {
+    text-align: center;
+}
+.hello>p {
+    font-size:18px;
+}
