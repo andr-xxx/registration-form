@@ -25,10 +25,4 @@ app.controller('headerCtrl', function ($scope, $rootScope, $state, $cookies) {  
       $state.go('homePage');
       $cookies.remove('idUser');
    };
-   $scope.$on('restructureHeader', function () {
-      console.log('yes, sir');
-      $scope.visible = true;
-
-   });
-
 });

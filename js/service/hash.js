@@ -11,7 +11,7 @@ function CryptoService() {
    return service;
 
    function encrypt(data) {
-      return CryptoJS.AES.encrypt(data, secretKey);
+      return CryptoJS.AES.encrypt(data, secretKey).toString();
    }
 
    function decrypt(text) {

@@ -1,5 +1,5 @@
-app.controller('profileCtrl', function ($scope, $cookies, CryptoService) {
-   var userData = getObjInLocalStorage();
+app.controller('profileCtrl', function ($scope, CryptoService, localStorageService, $timeout) {
+   var userData = localStorageService.getObjInLocalStorage();
 
    $scope.user = { // заполняем значение user
       name: userData.name,
@@ -10,20 +10,21 @@ app.controller('profileCtrl', function ($scope, $cookies, CryptoService) {
    };
 
    $scope.save = function () {
-      $scope.user.password = CryptoService.encrypt($scope.user.password).toString();
-      localData = JSON.parse (localStorage.getItem ('userDataBase'));
-      localData.splice ($scope.user.id - 1, 1, $scope.user);   // поиск реализован по id. массив данных упорядочен по id,
+
+      $scope.user.password = CryptoService.encrypt($scope.user.password);
+
+      var localData = localStorageService.getLocalData('userDataBase');
+      localData.splice($scope.user.id - 1, 1, $scope.user);   // поиск реализован по id. массив данных упорядочен по id,
+                                                               // ищем и заменяем данные в Local Storage на новые
                                                                // поэтому проблемм нет. удаление данных из массива не предусмотренно
-      localStorage.setItem('userDataBase', JSON.stringify(localData));
-      $scope.user.password = CryptoService.decrypt(getObjInLocalStorage().password);  // выводим на незашифрованный пароль
+      localStorageService.setLocalData('userDataBase', localData);
+      $scope.user.password = CryptoService.decrypt(localStorageService.getObjInLocalStorage().password);  // выводим незашифрованный пароль
+      $scope.dataSave = true;
+      $timeout (function () {
+         $scope.dataSave = false
+      }, 2000)
    };
-   function getObjInLocalStorage() {  // получаем из локала объект юзера по id в cookie
-      var cookieId = $cookies.get('idUser');
-      var localData = JSON.parse (localStorage.getItem ('userDataBase'));
-      for (var i = 0; i < localData.length; i++) {
-         if (localData[i].id == cookieId) {
-            return localData[i];
-         }
-      }
-   }
+   localStorageService.getLocalData('userDataBase')
+
+
 });
